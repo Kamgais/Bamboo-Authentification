@@ -5,6 +5,7 @@
   "main": "./main.ts",
   "scripts": {
     "start": "ts-node-dev ./src/main.ts",
+    "start:dev": "ts-node-dev ./src/main.ts",
     "start:prod": "node ./build/main.js"
   },
   "author": "cyril kamgais",
