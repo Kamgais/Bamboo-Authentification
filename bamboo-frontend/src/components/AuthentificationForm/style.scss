@@ -1,0 +1,217 @@
+@import '../../styles/fonts.scss';
+@import '../../styles/colors.scss';
+@import '../../styles/functions.scss';
+@import '../../styles/responsive.scss';
+
+
+
+
+.form-elements {
+    width: 100%;
+    height: 40px;
+}
+
+
+
+.authentification_form_container {
+
+    width: 100%;
+    min-height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+
+
+    .authentification_form_left_side {
+        @include xs {
+            display: none;
+        }
+
+        @include xl {
+            display: flex;
+        }
+        width: 30%;
+      //  background-color: green;
+        display: flex;
+        justify-content: center;
+
+
+        .left_side_img {
+            width: 100%;
+        }
+    }
+
+
+    .authentification_form_right_side {
+        @include xs {
+            width: 100%;
+            padding: 0px;
+        }
+        @include sm {
+            width: 90%;
+            padding: 20px;
+        }
+        @include xl {
+        width: 30%;
+        }
+        display: flex;
+        
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        
+       
+        .authentification_form_title {
+            font-size: 32px;
+
+
+            
+        }
+
+
+        
+    }
+}
+
+
+.authentification_form_right_side form {
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.authentification_form_right_side form  input {
+    @extend .form-elements;
+    padding-left: 20px;
+    border: 1px solid $greyTheme;
+    outline: none;
+
+    &:focus {
+        border: 2px solid $blackTheme;
+    }
+
+}
+
+
+.forgot_password_handler_text {
+    font-size: 13px;
+    color: $blueTheme;
+    @include use-transition(color);
+    
+    &:hover {
+        color: $blueThemeHover;
+        cursor: pointer;
+
+    }
+}
+
+.auth_submit_button {
+    @extend .form-elements;
+    background-color: $blueTheme;
+    border: none;
+    font-size: 20px;
+    color: $whiteTheme;
+    @include use-transition(background-color);
+
+    &:hover {
+        background-color: $blueThemeHover;
+        cursor: pointer;
+    }
+
+    &:disabled {
+        background-color: $blueThemeHover;
+        cursor: not-allowed; 
+    }
+}
+
+.extra_handler_text {
+    font-size: 13px;
+    color: $blackTheme;
+
+    span {
+        color: $blueTheme;
+        @include use-transition(color);
+
+        &:hover {
+            color: $blueThemeHover;
+            cursor: pointer;
+        }
+    }
+}
+
+.authentification_form_other_options {
+   // background-color: red;
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+
+    .other_options_text {
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+
+    .other_options_list {
+       // background-color: green;
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+
+        .other_options_list_item {
+            width: 45px;
+            height: 45px;
+            border: none;
+            font-size: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+
+            &:nth-child(1) {
+                background-color: $blackTheme;
+                color: $whiteTheme;
+                @include use-transition(background-color);
+
+                &:hover {
+                    background-color: $blackThemeHover;
+                    cursor: pointer;
+                }
+            }
+
+            &:nth-child(2) {
+                background-color: $blueTheme;
+                color: $whiteTheme;
+                @include use-transition(background-color);
+
+                &:hover {
+                    background-color: $blueThemeHover;
+                    cursor: pointer;
+                }
+            }
+
+            &:nth-last-child(1) {
+                background-color: $whiteTheme;
+                border: 1px solid $greyTheme;
+                @include use-transition(background-color);
+
+                &:hover {
+                    background-color: $whiteThemHover;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+
+

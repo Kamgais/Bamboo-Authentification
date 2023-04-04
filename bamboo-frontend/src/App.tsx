@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import './App.scss'
+import { AuthentificationForm } from './components'
+
 
 function App() {
-  const [count, setCount] = useState<number>(0)
 
   return (
     <div className="App">
-      
+      <AuthentificationForm type='login'/>
     </div>
   )
 }
