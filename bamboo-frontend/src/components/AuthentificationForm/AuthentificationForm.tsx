@@ -6,6 +6,7 @@ import * as Yup from 'yup'
 import {AiOutlineGithub} from 'react-icons/ai';
 import {BsFacebook} from 'react-icons/bs'
 import {FcGoogle} from 'react-icons/fc';
+import { Link } from 'react-router-dom'
 
 
 type Props = {
@@ -57,7 +58,7 @@ const AuthentificationForm: FunctionComponent<Props> = ({type}) => {
                             <FormControl control='input' name='ConfirmPassword' label='' withLabel={false} type='password' placeholder='Re-Password'/>
                          )}
                         <button type='submit' disabled={isSubmitting || !isValid || !dirty} className='auth_submit_button'>{type.charAt(0).toUpperCase() + type.slice(1)}</button>
-                        <p className="extra_handler_text">{type === 'login'? 'Not registred?': 'Already an account?'} <span>{type === 'login'? 'Create an account' : 'Sign in' }</span></p>
+                        <p className="extra_handler_text">{type === 'login'? 'Not registred?': 'Already an account?'} <Link to={type === 'login'? '/register': '/login'}><span>{type === 'login'? 'Create an account' : 'Sign in' }</span></Link> </p>
                     </Form>
                 )
              }

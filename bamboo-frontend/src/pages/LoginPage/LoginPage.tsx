@@ -1,11 +1,10 @@
 import React, {FunctionComponent} from 'react'
 import './style.scss'
+import { AuthentificationForm } from '../../components'
 
 const LoginPage: FunctionComponent = () => {
   return (
-    <div className="login_page_container">
-        
-    </div>
+   <AuthentificationForm type='login'/>
   )
 }
 

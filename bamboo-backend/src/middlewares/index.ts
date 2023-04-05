@@ -1,0 +1,1 @@
+export {validateResource} from './validateResource'
