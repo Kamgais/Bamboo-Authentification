@@ -14,3 +14,7 @@ export const LoginUserSchema = z.object({
 export const ForgotPasswordSchema = z.object({
     email: z.string({required_error: 'Email is required', invalid_type_error: 'Email must be a string'}).email({message: 'Invalid email format'})
 })
+
+export const ResetPasswordSchema = z.object({
+    password: z.string({required_error: 'password is required', invalid_type_error: 'password must be a string'}).min(3).max(20)
+})

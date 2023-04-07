@@ -7,13 +7,21 @@ type ApiErrorType = {
     message: string
 }
 
+type ForgotPasswordInput = {
+    email: string;
+}
+
+type ResetPasswordInput = {
+    password: string;
+}
+
 export const postUser = async(body: CreateUserInput): Promise<UserDto|ApiErrorType> => {
     try {
         const responseFromApi = await instance.post('/auth/create-account', body)
         const {data} = responseFromApi;
         return Promise.resolve(data);
     } catch (error: any) {
-        return Promise.reject({message: error.response.data})
+        return Promise.reject(error.response.data)
     }
 }
 
@@ -24,6 +32,28 @@ export const loginUser = async(body: LoginUserInput): Promise<UserDto|ApiErrorTy
         return Promise.resolve(data)
 
     } catch (error:any) {
-        return Promise.reject({})
+        return Promise.reject(error.response.data)
     }
+}
+
+
+export const sendResetPasswordLink =  async(body: ForgotPasswordInput): Promise<any> => {
+    try {
+        const responseFromApi = await instance.post('/auth/forgot-password', body);
+        const {data} = responseFromApi;
+        return Promise.resolve(data);
+    } catch (error: any) {
+        return Promise.reject(error.response.data);
+    }
+}
+
+export const resetPassword = async(body: ResetPasswordInput, token: string) => {
+
+    try {
+        const responseFromApi = await instance.post(`/auth/reset-password/${token}`, body);
+        return Promise.resolve()
+    } catch (error: any) {
+        return Promise.reject(error.response.data)
+    }
+
 }

@@ -1,2 +1,2 @@
 
-export {CreateUserSchema,LoginUserSchema, ForgotPasswordSchema} from './user-schema';
+export {CreateUserSchema,LoginUserSchema, ForgotPasswordSchema, ResetPasswordSchema} from './user-schema';

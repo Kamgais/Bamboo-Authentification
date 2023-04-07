@@ -78,7 +78,7 @@ const AuthentificationForm: FunctionComponent<Props> = ({type}) => {
 
 
     const navigateToResetPage = () => {
-        navigate('/reset-password')
+        navigate('/forgot-password')
     }
   return (
     <div className="authentification_form_container">
