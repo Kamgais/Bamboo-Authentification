@@ -4,9 +4,9 @@ import {
     Navigate,
     RouterProvider,
   } from "react-router-dom";
-import LoginPage from '../pages/LoginPage/LoginPage';
-import RegisterPage from '../pages/RegisterPage/RegisterPage';
+
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
+import { LoginPage, RegisterPage, ForgotPasswordPage } from '../pages';
 
 const AppRouting: FunctionComponent = () => {
 
@@ -23,6 +23,10 @@ const AppRouting: FunctionComponent = () => {
         {
             path: '/login',
             element: <LoginPage/>
+        },
+        {
+          path: '/forgot-password',
+          element: <ForgotPasswordPage/>
         }
 
       ]);

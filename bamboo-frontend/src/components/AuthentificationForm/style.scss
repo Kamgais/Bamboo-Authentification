@@ -94,7 +94,8 @@
     outline: none;
 
     &:focus {
-        border: 2px solid $blackTheme;
+        border: 2px solid #b0d7fd;
+        box-shadow: 0px 0px 3px #74b9ff;
     }
 
 }
@@ -116,6 +117,10 @@
     @extend .form-elements;
     background-color: $blueTheme;
     border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
     font-size: 20px;
     color: $whiteTheme;
     @include use-transition(background-color);

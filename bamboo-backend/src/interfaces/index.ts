@@ -1,1 +1,1 @@
-export {UserDto, CreateUserInput} from './user-dto'
+export {UserDto, CreateUserInput, LoginUserInput, ForgotPasswordInput} from './user-dto'
