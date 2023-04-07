@@ -1,0 +1,68 @@
+@import '../../styles/colors';
+
+
+
+$toastErrorColor : #c23616 ;
+$toastSuccessColor: $greenTheme;
+$toastInfoColor: $blueTheme;
+$toastDefaultColor: $blueTheme;
+.toast {
+    background-color: $blueTheme;
+    width: 300px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    padding: 5px;
+
+    &.toast-error{
+        background-color: $toastErrorColor;
+        color: $whiteTheme;
+    }
+
+    &.toast-success{
+        background-color: $toastSuccessColor;
+        color: $whiteTheme;
+    }
+
+    &.toast-info{
+        background-color: $toastInfoColor;
+        color: $whiteTheme;
+    }
+
+
+    &.toast-default{
+        background-color: $toastDefaultColor;
+        color: $whiteTheme;
+    }
+}
+
+.toast-border-left {
+    height: 100%;
+    width: 4px;
+    background-color: $whiteTheme;
+    
+}
+
+.toast-title {
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+}
+
+.toast-content {
+    font-size: 13px;
+    color: $blackTheme;
+}
+
+.toast-close-button {
+    margin-left: auto;
+
+
+    &:hover {
+        cursor: pointer;
+    }
+}

@@ -1,15 +1,19 @@
-import { useState } from 'react'
 import './App.scss'
-import { AuthentificationForm } from './components'
+import { ToastContextProvider } from './components/Toast/ToastContext'
 import AppRouting from './routes/AppRouting'
 
 
-function App() {
 
-  return (
+
+
+function App() {
+   return (
+    <ToastContextProvider>
     <div className="App">
       <AppRouting/>
     </div>
+    </ToastContextProvider>
+  
   )
 }
 

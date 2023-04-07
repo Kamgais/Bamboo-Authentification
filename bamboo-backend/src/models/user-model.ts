@@ -1,4 +1,4 @@
-import { Table, Column, Model, DataType } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, AllowNull } from 'sequelize-typescript';
 import bcrypt from 'bcrypt'
 
 
@@ -37,5 +37,14 @@ import bcrypt from 'bcrypt'
         }
     })
     password!: string;
+
+
+    @Column({
+        type: DataType.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+       
+    })
+    isAccountConfirmed!:boolean;
 
 }

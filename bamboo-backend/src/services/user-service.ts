@@ -35,4 +35,14 @@ export class UserService {
             return Promise.reject(error)
         }
     }
+
+    static async updateById(changes: Object, id: string) {
+        try {
+           await UserModel.update(changes, {where: {id}})
+           const user = await UserModel.findByPk(id);
+           return Promise.resolve(user); 
+        } catch (error) {
+            return Promise.reject(error)
+        }
+    }
 }
