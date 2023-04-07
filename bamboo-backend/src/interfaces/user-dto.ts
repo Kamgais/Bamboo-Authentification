@@ -1,5 +1,5 @@
 import {z} from 'zod';
-import { CreateUserSchema, ForgotPasswordSchema, LoginUserSchema } from '../schemas';
+import { CreateUserSchema, ForgotPasswordSchema, LoginUserSchema, ResetPasswordSchema } from '../schemas';
 
 export interface UserDto {
     id?:number,
@@ -12,3 +12,4 @@ export interface UserDto {
 export type CreateUserInput = z.infer<typeof CreateUserSchema>
 export type LoginUserInput = z.infer<typeof LoginUserSchema>
 export type ForgotPasswordInput = z.infer< typeof ForgotPasswordSchema>
+export type ResetPasswordInput = z.infer<typeof ResetPasswordSchema>

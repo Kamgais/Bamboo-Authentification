@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { AuthController } from "../controllers";
 import { validateResource } from "../middlewares";
-import { CreateUserSchema, ForgotPasswordSchema, LoginUserSchema } from "../schemas";
+import { CreateUserSchema, ForgotPasswordSchema, LoginUserSchema, ResetPasswordSchema } from "../schemas";
 
 
 const router = Router();
@@ -18,6 +18,9 @@ router.post('/login', validateResource(LoginUserSchema), AuthController.loginUse
 
 // forgot password
 router.post('/forgot-password', validateResource(ForgotPasswordSchema)  ,AuthController.forgotPasswordHandler)
+
+// reset password
+router.post('/reset-password/:token', validateResource(ResetPasswordSchema), AuthController.resetPasswordHandler)
 
 
 
