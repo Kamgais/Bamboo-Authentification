@@ -10,7 +10,8 @@ export class UserMapper implements Mapper<UserModel, UserDto> {
         return {
             id: e.id,
             username: e.username,
-            email: e.email
+            email: e.email,
+            isAccountConfirmed: e.isAccountConfirmed
         }
     }
     toEntity(dto: UserDto): UserModel {

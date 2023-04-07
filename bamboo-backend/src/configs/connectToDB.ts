@@ -1,13 +1,15 @@
 import { Sequelize } from 'sequelize-typescript';
+import { UserModel } from '../models';
+import { User } from '../models/user-model';
 
 export const sequelize = new Sequelize({
-  database: process.env.DB_NAME,
+  database: 'bamboo_db',
   dialect: 'mysql',
   username: 'root',
   password:'',
   host: process.env.DB_HOST,
   port: Number(process.env.DB_PORT),
-  models: [], // or [Player, Team],
+  models: [User], // or [Player, Team],
 });
 
 
