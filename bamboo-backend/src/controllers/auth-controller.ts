@@ -10,6 +10,7 @@ import { signJWT, verifyJWT } from "../utils/jwt-utils";
 import base64url from "base64url";
 import { JwtPayload } from "jsonwebtoken";
 import bcrypt from 'bcrypt';
+import { ResetPasswordInput } from "../interfaces/user-dto";
 
 
 export class AuthController {
@@ -140,5 +141,36 @@ export class AuthController {
       } catch (error: any) {
        return res.status(500).json({message: error.message})
       }
+  }
+
+
+  static async resetPasswordHandler(req: Request<{token: string},{},ResetPasswordInput>, res: Response): Promise<Response> {
+    const {password} = req.body;
+    const {token} = req.params;
+    const decodedToken = base64url.decode(token);
+
+    // verify token 
+    const {decoded, valid, expired} = verifyJWT(decodedToken);
+    
+    if(!decoded && expired) {
+      return res.status(403).json({message: 'Link is already, please request another link'})
+    }
+    if(!decoded && !expired) {
+      return res.status(403).json({message: 'No authorization for this action'})
+    }
+    const {userId} = decoded as JwtPayload ;
+    try {
+      const user = await UserService.findById(userId);
+      if(!user) {
+        return res.status(404).json({message: 'No user found with this id'})
+      }
+      // const dto = UserMapper.prototype.toDto(user);
+      const userWithNewPassword = await UserService.updateById({password}, userId);
+      return res.status(204).json();
+    } catch (error: any) {
+      return res.status(500).json({message: error.message})
+    }
+    
+
   }
 }
