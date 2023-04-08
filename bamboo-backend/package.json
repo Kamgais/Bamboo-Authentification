@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "bamboo rest api",
   "main": "./main.ts",
+  "type": "module",
   "scripts": {
-    "start": "ts-node-dev ./src/main.ts",
+    "start": "node ./src/main.ts",
     "start:dev": "ts-node-dev ./src/main.ts",
     "start:prod": "node ./build/main.js"
   },

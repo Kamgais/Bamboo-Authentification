@@ -75,4 +75,9 @@ app.listen(PORT, ():void => {
    connectToDB()
 });
 
+
+app.get('/', (req,res) => {
+ console.log('Hello World')
+})
+
 app.use('/bamboo/api/v1/auth', authRouter);
