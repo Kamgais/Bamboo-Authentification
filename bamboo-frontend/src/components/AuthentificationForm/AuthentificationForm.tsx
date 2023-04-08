@@ -19,7 +19,7 @@ type Props = {
 
 const AuthentificationForm: FunctionComponent<Props> = ({type}) => {
     const [enabled, setEnabled] = useState(false)
-    const googleUser = useGoogleAuth(enabled);
+    const {isError} = useGoogleAuth(enabled);
     const {requestLoading} = useStore();
     const signUp = useSignUp();
     const login = useLogin();
@@ -86,6 +86,9 @@ const AuthentificationForm: FunctionComponent<Props> = ({type}) => {
     timer = setInterval(() => {
         if(newWindow.closed) {
        setEnabled(true);
+       if(isError) {
+        setEnabled(false)
+       }
         
         }
     },500)

@@ -18,7 +18,6 @@ export const useGoogleAuth = (enabled: boolean) => {
             pushToast({content: error.message, title: 'Error', type: 'error'})
         },
         refetchOnMount: true,
-        refetchOnWindowFocus: false,
         enabled
     })
 }
