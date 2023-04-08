@@ -28,10 +28,22 @@ router.post('/reset-password/:token', validateResource(ResetPasswordSchema), Aut
 // Initialize the Google OAuth2.0 authentication
 router.get('/google', passport.authenticate('google', {scope: ['profile', 'email']}));
 
+router.get('/github', passport.authenticate('github', {scope: ['profile']}));
+
+
+
 // handle the callback after Google has authenticated the user
 router.get('/google/callback', passport.authenticate('google', {
     successRedirect: `http://localhost:5173/login/success`,
     failureMessage: 'Cannot login to Google , please try again later',
+    failureRedirect: '/login/failed'
+}))
+
+
+// handle the callback after Github has authenticated
+router.get('/github/callback', passport.authenticate('github', {
+    successRedirect: `http://localhost:5173/login/success`,
+    failureMessage: 'Cannot login to Github , please try again later',
     failureRedirect: '/login/failed'
 }))
 
@@ -44,11 +56,16 @@ router.get('/login/failed', (req,res) => {
 })
 
 // google login success
-router.get('/login/success', AuthController.googleCallbackHandler, (req,res) => {
+router.get('/login/success', AuthController.successCallbackHandler, (req,res) => {
     if(req.user && res.locals.user) {
         res.status(200).json(res.locals.user)
     }
 })
+
+
+// google , github logout
+router.put('/logout', AuthController.logoutHandler)
+
 
 
 

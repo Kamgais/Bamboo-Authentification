@@ -1,4 +1,4 @@
 
 
 
-export {postUser, loginUser, sendResetPasswordLink, resetPassword, loginWithGoogle} from './auth-service';
+export {postUser, loginUser, sendResetPasswordLink, resetPassword, successLoginHandler, logoutHandler} from './auth-service';

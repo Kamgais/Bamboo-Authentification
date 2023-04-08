@@ -6,6 +6,14 @@ import cors from 'cors';
 import session from 'express-session';
 import passport from "passport";
 import passportConfig from './configs/passport-config';
+import { UserDto } from './interfaces';
+
+
+declare module 'express-session' {
+   interface SessionData {
+     user?: UserDto
+   }
+ }
 
 const app: Application = express();
 dotenv.config()
@@ -19,12 +27,15 @@ const corsConfig = {
  app.use(cors(corsConfig));
  app.options('*', cors(corsConfig));
 
+
+
+
  // Set up session management
 app.use(session({
-   secret: 'my-secret',
+   secret: 'thisismysecrctekeyfhrgfgrfrty84fwir767',
    resave: false,
-   saveUninitialized: false,
-   cookie: { secure: false, maxAge: 3600000 } // 1hour
+   saveUninitialized: true,
+   cookie: {  maxAge: 1000 * 60 * 60 * 24 } // 1hour
   }));
 
 

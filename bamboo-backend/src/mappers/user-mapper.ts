@@ -11,7 +11,9 @@ export class UserMapper implements Mapper<UserModel, UserDto> {
             id: e.id,
             username: e.username,
             email: e.email,
-            isAccountConfirmed: e.isAccountConfirmed
+            isAccountConfirmed: e.isAccountConfirmed,
+            googleId: e.googleId,
+            githubId: e.githubId
         }
     }
     toEntity(dto: UserDto): UserModel {

@@ -12,6 +12,7 @@ type CreateUserInput = Omit<UserDto, "id">
 export const useSignUp = () => {
     const appState = useStore();
     const {pushToast} = useToasts();
+    const navigate = useNavigate();
     return useMutation({
         mutationFn: (user: CreateUserInput) => postUser(user),
         onMutate: () => {
@@ -21,6 +22,7 @@ export const useSignUp = () => {
            // setItem('auth-user', data);
             pushToast({content:'Account created', title: 'Success', type: 'success'})
             appState.setRequestLoading(false);
+            navigate('/login')
             
         },
         onError: (error: any) => {

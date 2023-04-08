@@ -6,7 +6,9 @@ export interface UserDto {
     username?: string,
     password?: string,
     email?: string,
-    isAccountConfirmed?: boolean
+    isAccountConfirmed?: boolean,
+    googleId?: number,
+    githubId?: number
 }
 
 export type CreateUserInput = z.infer<typeof CreateUserSchema>
