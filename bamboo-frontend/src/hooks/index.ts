@@ -4,4 +4,5 @@ export {useLocalStorage} from './useLocalStorage';
 export {useUser} from './useUser';
 export {useSendResetLink} from './useSendResetLink';
 export {useResetPassword} from './useResetPassword'
-export {useGoogleAuth} from './useGoogleAuth';
+export {useSuccessAuth} from './useSuccessAuth';
+export {useLogout} from './useLogout'

@@ -115,6 +115,8 @@ export class AuthController {
             secure: true,
           });
           const dto = UserMapper.prototype.toDto(isInDB);
+          req.session.user = dto;
+        
           return res.status(200).json(dto);
     } catch (error: any) {
         return res.status(500).json({message : error.message})
@@ -175,7 +177,7 @@ export class AuthController {
   }
 
 
-  static async googleCallbackHandler(req:Request,res: Response, next: NextFunction) {
+  static async successCallbackHandler(req:Request,res: Response, next: NextFunction) {
     if(req.user) {
       const id = (req.user as UserDto).id;
       
@@ -213,5 +215,27 @@ export class AuthController {
     } else {
       return res.status(403).json({message: 'No Authorisation'})
     }
+  }
+
+
+  static async logoutHandler(req: Request, res: Response) {
+    if(req.user) {
+      req.logout((err: any) => {
+        if(err) {
+          res.status(500).json({message: 'Failed to logout'});
+        }
+        res.locals.user = null;
+        res.status(200).json({message: 'logout successfull'});
+      });
+    } else if(req.session.user) {
+      req.session.destroy((err: any) => {
+        if(err) {
+          res.status(500).json({message: 'Failed to logout'})
+        }
+        res.status(200).json({message: 'logout successfull'})
+      });
+    }
+  
+    
   }
 }
