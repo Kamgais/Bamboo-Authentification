@@ -3,7 +3,7 @@ import './spinner.scss';
 
 const AppRequestSpinner: FunctionComponent = () => {
   return (
-    <span className="loader"></span>
+    <span className="sm-loader"></span>
   )
 }
 

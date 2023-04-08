@@ -178,7 +178,7 @@ export class AuthController {
   static async googleCallbackHandler(req:Request,res: Response, next: NextFunction) {
     if(req.user) {
       const id = (req.user as UserDto).id;
-
+      
     try {
       // generate tokens
       const accessToken = signJWT({userId: id}, {expiresIn: '15m'})
