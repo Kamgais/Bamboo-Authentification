@@ -6,7 +6,7 @@ import {
   } from "react-router-dom";
 
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
-import { LoginPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage } from '../pages';
+import { LoginPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, LoginSuccessPage } from '../pages';
 
 const AppRouting: FunctionComponent = () => {
 
@@ -31,6 +31,11 @@ const AppRouting: FunctionComponent = () => {
         {
           path: 'reset-password/:token',
           element: <ResetPasswordPage/>
+        }
+        ,
+        {
+          path: 'login/success',
+          element: <LoginSuccessPage/>
         }
 
       ]);
