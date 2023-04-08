@@ -57,3 +57,13 @@ export const resetPassword = async(body: ResetPasswordInput, token: string) => {
     }
 
 }
+
+export const loginWithGoogle = async() => {
+    try {
+        const responseFromApi = await instance.get('/auth/login/success');
+        const {data} = responseFromApi;
+        return Promise.resolve(data);
+    } catch (error:any) {
+        return Promise.reject(error.response.data)
+    }
+}

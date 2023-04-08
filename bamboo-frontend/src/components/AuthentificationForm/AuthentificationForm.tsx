@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useState} from 'react'
 import {Formik, Form} from 'formik'
 import './style.scss'
 import { FormControl, LoadingSpinner } from '..'
@@ -8,7 +8,7 @@ import {BsFacebook} from 'react-icons/bs'
 import {FcGoogle} from 'react-icons/fc';
 import { Link } from 'react-router-dom'
 import useStore from '../../store/AppStore'
-import { useLogin, useSignUp } from '../../hooks'
+import { useGoogleAuth, useLogin, useSignUp } from '../../hooks'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -18,6 +18,8 @@ type Props = {
 }
 
 const AuthentificationForm: FunctionComponent<Props> = ({type}) => {
+    const [enabled, setEnabled] = useState(false)
+    const googleUser = useGoogleAuth(enabled);
     const {requestLoading} = useStore();
     const signUp = useSignUp();
     const login = useLogin();
@@ -75,6 +77,21 @@ const AuthentificationForm: FunctionComponent<Props> = ({type}) => {
 
     }
 
+    // navigate to google page auth
+   const loginWithGoogle = () => {
+    let timer = null;
+    const googleLoginURL = 'http://localhost:3001/bamboo/api/v1/auth/google';
+  const newWindow =  window.open( googleLoginURL, '_blank', "width=500,height=600");
+  if(newWindow) {
+    timer = setInterval(() => {
+        if(newWindow.closed) {
+       setEnabled(true);
+        
+        }
+    },500)
+  }
+   }
+
 
 
     const navigateToResetPage = () => {
@@ -118,7 +135,7 @@ const AuthentificationForm: FunctionComponent<Props> = ({type}) => {
                 <button className="other_options_list_item">
                     <BsFacebook/>
                 </button>
-                <button className="other_options_list_item">
+                <button className="other_options_list_item" onClick={loginWithGoogle}>
                     <FcGoogle/>
                 </button>
             </div>
