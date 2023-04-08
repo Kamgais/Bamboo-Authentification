@@ -8,7 +8,7 @@ import {BsFacebook} from 'react-icons/bs'
 import {FcGoogle} from 'react-icons/fc';
 import { Link } from 'react-router-dom'
 import useStore from '../../store/AppStore'
-import { useGoogleAuth, useLogin, useSignUp } from '../../hooks'
+import { useSuccessAuth, useLogin, useSignUp } from '../../hooks'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -19,7 +19,7 @@ type Props = {
 
 const AuthentificationForm: FunctionComponent<Props> = ({type}) => {
     const [enabled, setEnabled] = useState(false)
-    const {isError} = useGoogleAuth(enabled);
+    const {isError, isSuccess} = useSuccessAuth(enabled);
     const {requestLoading} = useStore();
     const signUp = useSignUp();
     const login = useLogin();
@@ -57,7 +57,7 @@ const AuthentificationForm: FunctionComponent<Props> = ({type}) => {
             action.resetForm({
                 values: createAccountInitialValues
             })
-            navigate('/login')   
+      
         } catch (error) {
             console.log(error)
         }
@@ -69,7 +69,7 @@ const AuthentificationForm: FunctionComponent<Props> = ({type}) => {
            action.resetForm({
             values: loginInitialValues
            })
-          // navigate('/app')
+    
         } catch (error) {
             console.log(error);
         }
@@ -78,22 +78,25 @@ const AuthentificationForm: FunctionComponent<Props> = ({type}) => {
     }
 
     // navigate to google page auth
-   const loginWithGoogle = () => {
-    let timer = null;
-    const googleLoginURL = 'http://localhost:3001/bamboo/api/v1/auth/google';
-  const newWindow =  window.open( googleLoginURL, '_blank', "width=500,height=600");
+   const loginWithServices = (service: string) => {
+    let timer: NodeJS.Timer | null = null;
+    const LoginURL = `http://localhost:3001/bamboo/api/v1/auth/${service}`;
+  const newWindow =  window.open( LoginURL, '_blank', "width=500,height=600");
   if(newWindow) {
     timer = setInterval(() => {
         if(newWindow.closed) {
        setEnabled(true);
-       if(isError) {
-        setEnabled(false)
+       if(timer) {
+        clearInterval(timer);
+      
        }
-        
-        }
+    }
     },500)
   }
    }
+
+
+
 
 
 
@@ -132,13 +135,13 @@ const AuthentificationForm: FunctionComponent<Props> = ({type}) => {
            <div className="authentification_form_other_options">
             <p className="other_options_text">Other options : </p>
             <div className="other_options_list">
-                <button className="other_options_list_item">
+                <button className="other_options_list_item" onClick={() => loginWithServices('github')}>
                     <AiOutlineGithub/>
                 </button>
                 <button className="other_options_list_item">
                     <BsFacebook/>
                 </button>
-                <button className="other_options_list_item" onClick={loginWithGoogle}>
+                <button className="other_options_list_item" onClick={() => loginWithServices('google')}>
                     <FcGoogle/>
                 </button>
             </div>

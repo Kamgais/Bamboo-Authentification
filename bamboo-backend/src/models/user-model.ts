@@ -47,4 +47,18 @@ import bcrypt from 'bcrypt'
     })
     isAccountConfirmed!:boolean;
 
+    @Column({
+        type: DataType.INTEGER,
+        allowNull: false,
+        defaultValue: -1
+    })
+        googleId!: number;
+
+    @Column({
+        type: DataType.INTEGER,
+        allowNull: false,
+        defaultValue: -1
+    })
+        githubId!: number;
+
 }
