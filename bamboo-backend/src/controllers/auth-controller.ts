@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { CreateUserInput, ForgotPasswordInput, LoginUserInput, UserDto } from "../interfaces";
 import { ApiResponseType, ErrorMessage } from "../utils/types";
 import { UserService } from "../services";
@@ -172,5 +172,46 @@ export class AuthController {
     }
     
 
+  }
+
+
+  static async googleCallbackHandler(req:Request,res: Response, next: NextFunction) {
+    if(req.user) {
+      const id = (req.user as UserDto).id;
+
+    try {
+      // generate tokens
+      const accessToken = signJWT({userId: id}, {expiresIn: '15m'})
+      const refreshToken = signJWT({userId: id}, {expiresIn: '1y'})
+      const user = await UserService.findById(String(id));
+      if(!user) {
+        res.status(404).json({message: 'user not found with this id'})
+      }
+      res.cookie('accessToken', accessToken, {
+      maxAge: 900000, // 15 mins
+      httpOnly: true,
+      domain: "localhost",
+      path: "/",
+      sameSite: "none",
+      secure: true,
+      })
+
+      res.cookie('refreshToken', refreshToken, {
+      maxAge: 3.154e10, // 1 year
+      httpOnly: true,
+      domain: "localhost",
+      path: "/",
+      sameSite: "none",
+      secure: true,
+      })
+      const dto = UserMapper.prototype.toDto(user!);
+      res.locals.user = dto;
+      next();
+    } catch (error:any) {
+      return res.status(500).json({message: error.message})
+    }
+    } else {
+      return res.status(403).json({message: 'No Authorisation'})
+    }
   }
 }

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent , useEffect} from 'react'
 import {AiFillInfoCircle, AiOutlineCheckCircle, AiOutlineCloseCircle} from 'react-icons/ai'
 import {CgClose} from 'react-icons/cg'
 import './toast.scss';
@@ -11,6 +11,12 @@ type Props = {
     type?: "success" | "info" | "error" | "default"
 }
 const Toast: FunctionComponent<Props> = ({title, content, type}) => {
+
+       useEffect(() => {
+        setTimeout(() => {
+          removeToast(content)
+        },3000)
+       }, [])
     const {removeToast} = useToasts();
   return (
     <div className={`toast toast-${type}`}>
