@@ -7,11 +7,12 @@ import { UserMapper } from "../mappers";
 export default () => {
     const GoogleStrategy = require('passport-google-oauth20').Strategy;
     const GithubStrategy = require('passport-github2').Strategy;
+    
 
     passport.use(new GoogleStrategy({
         clientID: `${process.env.GOOGLE_AUTH_CLIENT_ID}`,
         clientSecret: `${process.env.GOOGLE_AUTH_SECRET_ID}`,
-        callbackURL: '/bamboo/api/v1/auth/google/callback'
+        callbackURL: `${process.env.DEV_SERVER_URL}/auth/google/callback`
     }, 
      
        async (accessToken:any, refreshToken:any, profile:any, cb:any) => {
@@ -40,7 +41,7 @@ export default () => {
     passport.use(new GithubStrategy({
         clientID: `${process.env.GITHUB_AUTH_CLIENT_ID}`,
         clientSecret: `${process.env.GITHUB_AUTH_SECRET_ID}`,
-        callbackURL: '/bamboo/api/v1/auth/github/callback'
+        callbackURL: `${process.env.DEV_SERVER_URL}/auth/github/callback`
     },
      
       async (accessToken: any, refreshToken:any, profile:any, cb:any) => {
@@ -72,6 +73,8 @@ export default () => {
     
     
     ))
+
+   
 }
 
 
