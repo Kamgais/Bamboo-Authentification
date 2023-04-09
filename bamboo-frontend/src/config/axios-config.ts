@@ -4,7 +4,7 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 
 const instance  = axios.create({
-    baseURL: 'http://localhost:3001/bamboo/api/v1',
+    baseURL: 'https://bamboo-frontend.herokuapp.com/bamboo/api/v1',
     timeout:5000,
     timeoutErrorMessage: 'Client can\'t connect with Bamboo Server',
     headers: {
