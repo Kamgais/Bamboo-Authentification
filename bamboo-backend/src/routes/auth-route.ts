@@ -34,7 +34,7 @@ router.get('/github', passport.authenticate('github', {scope: ['profile']}));
 
 // handle the callback after Google has authenticated the user
 router.get('/google/callback', passport.authenticate('google', {
-    successRedirect: `http://localhost:5173/login/success`,
+    successRedirect: `${process.env.FRONTEND_URL}/login/success`,
     failureMessage: 'Cannot login to Google , please try again later',
     failureRedirect: '/login/failed'
 }))
@@ -42,7 +42,7 @@ router.get('/google/callback', passport.authenticate('google', {
 
 // handle the callback after Github has authenticated
 router.get('/github/callback', passport.authenticate('github', {
-    successRedirect: `http://localhost:5173/login/success`,
+    successRedirect: `${process.env.FRONTEND_URL}/login/success`,
     failureMessage: 'Cannot login to Github , please try again later',
     failureRedirect: '/login/failed'
 }))

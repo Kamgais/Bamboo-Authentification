@@ -17,7 +17,7 @@ declare module 'express-session' {
 
 const app: Application = express();
 dotenv.config()
-const PORT: number = 3001;
+const PORT: number = process.env.PORT ? +process.env.PORT : 3001;
 
 const corsConfig = {
    origin: true,
@@ -73,6 +73,13 @@ app.set('views', './src/views');
 app.listen(PORT, ():void => {
    console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);
    connectToDB()
+  
 });
+
+
+app.get('/', (req,res) => {
+ console.log('Hello Heroku')
+ res.json({message: "Hello Heroku 😉"})
+})
 
 app.use('/bamboo/api/v1/auth', authRouter);

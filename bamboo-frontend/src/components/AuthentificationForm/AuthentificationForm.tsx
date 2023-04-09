@@ -80,7 +80,7 @@ const AuthentificationForm: FunctionComponent<Props> = ({type}) => {
     // navigate to google page auth
    const loginWithServices = (service: string) => {
     let timer: NodeJS.Timer | null = null;
-    const LoginURL = `http://localhost:3001/bamboo/api/v1/auth/${service}`;
+    const LoginURL = `https://bamboo-frontend.herokuapp.com/bamboo/api/v1/auth/${service}`;
   const newWindow =  window.open( LoginURL, '_blank', "width=500,height=600");
   if(newWindow) {
     timer = setInterval(() => {
