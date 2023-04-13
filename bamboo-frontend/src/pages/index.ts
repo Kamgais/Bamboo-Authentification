@@ -9,3 +9,4 @@ export {default as Dashboard} from './Dashboard/Dashboard';
 export {default as ProjectList} from './Projects/Projects';
 export {default as Board} from './Board/Board';
 export {default as Settings} from './Settings/Settings';
+export {default as AddProjectPage} from './AddProjectPage/AddProjectPage';

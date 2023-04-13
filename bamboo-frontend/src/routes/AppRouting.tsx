@@ -6,7 +6,7 @@ import {
   } from "react-router-dom";
 
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
-import { LoginPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, LoginSuccessPage, PrivateRoute, AppContainer, Dashboard, ProjectList, Board, Settings } from '../pages';
+import { LoginPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, LoginSuccessPage, PrivateRoute, AppContainer, Dashboard, ProjectList, Board, Settings, AddProjectPage } from '../pages';
 
 const AppRouting: FunctionComponent = () => {
 
@@ -47,7 +47,12 @@ const AppRouting: FunctionComponent = () => {
             },
             {
               path: 'projects',
-              element: <ProjectList/>
+              element: <ProjectList/>,
+              
+            },
+            {
+              path: 'projects/create',
+              element: <AddProjectPage/>
             },
             {
               path: 'board',

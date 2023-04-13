@@ -9,4 +9,13 @@ export class CategoryService {
             return Promise.reject(error)
         }
     }
+
+    static async findAll() {
+        try {
+            const categories = await CategoryModel.findAll();
+            return Promise.resolve(categories)
+        } catch (error) {
+            return Promise.reject(error);
+        }
+    }
 }

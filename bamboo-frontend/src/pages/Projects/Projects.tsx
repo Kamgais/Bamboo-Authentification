@@ -3,7 +3,7 @@ import {MdOutlineAdd} from 'react-icons/md';
 import './projects.scss';
 
 import { useProjects, useSingleUser } from '../../hooks';
-import { ProjectDto } from '../../api/interfaces';
+
 import { ProjectTableRow } from '../../components';
 import AppRequestSpinner from '../../components/AppRequestSpinner/AppRequestSpinner';
 

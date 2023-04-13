@@ -1,0 +1,86 @@
+@import '../../styles/colors';
+@import '../../styles/functions';
+
+.add_project_container {
+   // background-color: red;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add_project_head {
+   // background-color: green;
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    align-items: center;
+
+
+    .add_project_title {
+        color: $greyTheme;
+    }
+
+    .add_project_add_member_button {
+        border: none;
+        padding: 10px;
+        font-size: 15px;
+        color: $whiteTheme;
+        background-color: $blueTheme;
+        @include use-transition(all);
+
+        &:hover {
+            cursor: pointer;
+            background-color: $blueThemeHover;
+        }
+    }
+}
+
+.add_project_form {
+   // background-color: red;
+    width: 90%;
+    margin-top: 30px;
+
+    form {
+        width: 100%;
+      //  background-color: green;
+
+        label {
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 80%;
+            width: 100%;
+            height: 50px;
+            padding-left: 20px;
+            border: none;
+            border: 1px solid $greyTheme;
+            outline: none;
+            margin-bottom: 10px;
+        
+            &:focus {
+                border: 2px solid #b0d7fd;
+                box-shadow: 0px 0px 3px #74b9ff;
+            }
+
+            
+        }
+
+        textarea {
+            width: 100%;
+            height: 300px;
+            margin-bottom: 10px;
+            resize: none;
+            border: 1px solid $greyTheme;
+            outline: none;
+            padding: 20px;
+            
+            &:focus {
+                border: 2px solid #b0d7fd;
+                box-shadow: 0px 0px 3px #74b9ff; 
+            }
+        }
+    }
+}

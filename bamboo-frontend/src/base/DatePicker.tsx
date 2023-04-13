@@ -2,6 +2,7 @@ import { ErrorMessage, Field } from 'formik'
 import React, {FunctionComponent} from 'react'
 import DateView from 'react-datepicker';
 import TextError from './TextError';
+import "react-datepicker/dist/react-datepicker.css";
 
 
 
