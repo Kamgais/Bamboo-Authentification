@@ -1,0 +1,66 @@
+@import '../../styles/colors';
+@import '../../styles/functions';
+@import '../../styles/responsive';
+
+
+.sidebar_extra_container {
+    @include xs {
+        display: none;
+    }
+    @include md {
+    display: flex;
+    }
+    position: fixed;
+    z-index: 1100;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    height: 100vh;
+    background-color: $blueTheme ;
+    width: 50px;
+    
+    padding: 10px;
+    justify-content: center;
+    @include use-transition(all);
+
+
+    &:hover{
+        width: 150px;
+        justify-content: flex-start;
+
+        .list_item_label{
+            display: block;
+        }
+
+    }
+
+
+    .sidebar_extra_list {
+        list-style: none;
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        font-size: 16px;
+
+        .sidebar_extra_list_item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+           // background-color: green;
+            padding: 10px;
+
+            &:hover {
+                cursor: pointer;
+                background-color: $greyThemeHover;
+            }
+        }
+    }
+
+
+    .list_item_label {
+        display: none;
+        @include use-transition(display);
+        font-size: 16px
+    }
+}

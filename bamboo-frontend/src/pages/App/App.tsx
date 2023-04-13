@@ -1,19 +1,20 @@
 import React, {FunctionComponent} from 'react'
 import './app.scss';
-import { useLogout } from '../../hooks';
+import { AppSideBar, SearchBar, SideBarXtra } from '../../components';
+import { Outlet } from 'react-router-dom';
+
 
 const App: FunctionComponent = () => {
-    const logout = useLogout();
-
-    const logoutHandler = async() => {
-       try {
-        await logout.mutateAsync()
-       } catch (error) {
-        
-       }
-    }
+   
   return (
-    <button className='app_button' onClick={logoutHandler}>LOGOUT</button>
+    <div className="app_container">
+      <SideBarXtra/>
+      <AppSideBar/>
+      <SearchBar/>
+      <div className="app_container_content">
+        <Outlet/>
+      </div>
+    </div>
   )
 }
 

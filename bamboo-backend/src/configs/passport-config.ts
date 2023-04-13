@@ -19,14 +19,14 @@ export default () => {
             try {
                 const userFromDB = await UserService.findByEmail(profile.emails![0].value);
                 if(!userFromDB) {
-                    const entity = UserMapper.prototype.toEntity({
+                    const entity = await UserMapper.prototype.toEntity({
                         username: profile.displayName,
                         email: profile.emails![0].value,
                         password: 'authenticated with google',
                         googleId: profile.id,
                         isAccountConfirmed: true
                     })
-                    const user = await entity.save();
+                    const user = await entity!.save();
     
                     return cb(null,user)
                 }
@@ -51,14 +51,14 @@ export default () => {
            try {
             const userWithUsername = await UserService.findByUsername(username);
             if(!userWithUsername) {
-                const entity = UserMapper.prototype.toEntity({
+                const entity = await UserMapper.prototype.toEntity({
                     username: profile.username,
                     email: profile.profileUrl,
                     password: 'authenticated with github',
                     githubId: profile.id,
                     isAccountConfirmed: true
                 })
-                const user = await entity.save();
+                const user = await entity!.save();
                 return cb(null,user)
             }
             return cb(null, userWithUsername)

@@ -1,0 +1,134 @@
+@import '../../styles/colors';
+@import '../../styles/functions';
+@import '../../styles/responsive';
+
+.app_sidebar_container {
+    @include xs {
+        height: 50px;
+        width: 100vw;
+        bottom: 0;
+        left: 0;
+    }
+    @include md {
+        height: 100vh;
+        width: 50px;
+        top: 0;
+        left: 50px;
+        bottom: 0;
+    }
+    @include xl {
+        width: 250px;
+    }
+    position: fixed;
+     background-color: $blueExtra;
+     z-index: 1000;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+
+
+    .app_sidebar_list {
+        @include xs {
+            display: flex;
+            margin-top: 0;
+            justify-content: space-evenly;
+            width: 100%;
+           
+        }
+        @include md {
+        flex-direction: column;
+        margin-top: 30px;
+       // align-items: center;
+       width: auto;
+        }
+        list-style: none;
+        
+        display: flex;
+        
+        gap: 5px;
+
+
+        .app_sidebar_list_item {
+            @include xs {
+                font-size: 20px;
+            }
+            @include  xl {
+                font-size: 16px;
+            }
+            display: flex;
+            align-items: center;
+            gap: 20px;
+           
+            padding: 10px;
+            @include use-transition(all);
+
+            &:hover {
+                background-color: $greyThemeHover;
+                cursor: pointer;
+                color: $blueTheme;
+            }
+
+            .app_sidebar_list_item_label {
+                @include xs {
+                    display: none;
+                }
+                @include xl {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+
+.app_sidebar_head {
+    @include xs {
+        display: none;
+    }
+    @include md {
+        display: flex;
+    }
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+
+
+    .app_sidebar_img {
+        @include md {
+            width: 30px;
+            height: 30px;
+        }
+        @include xl {
+        width: 50px;
+        height: 50px
+        }
+        border: 2px solid $blackTheme;
+        background-color: $whiteTheme;
+        ;
+
+
+        .app_sidebar_img_image {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .app_sidebar_head_title {
+        @include xs {
+            display: none;
+        }
+        @include xl {
+            display: block;
+        }
+        color: $blackTheme;
+        font-weight: bold;
+        font-size: 15px;
+    }
+}
+
+
+.focused {
+    background-color: $greyThemeHover;
+    color: $blueTheme;
+}
