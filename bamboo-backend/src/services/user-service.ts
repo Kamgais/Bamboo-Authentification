@@ -46,7 +46,7 @@ export class UserService {
         }
     }
 
-    static async findById(id: string) {
+    static async findById(id: number) {
         try {
             const user = await UserModel.findByPk(id);
             return Promise.resolve(user);

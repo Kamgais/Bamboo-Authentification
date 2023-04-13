@@ -8,7 +8,11 @@ export interface UserDto {
     email?: string,
     isAccountConfirmed?: boolean,
     googleId?: number,
-    githubId?: number
+    githubId?: number,
+    profilePic?: string;
+    createdTasks?: number[];
+    assignedTasks?: number[];
+    projects?: number[]
 }
 
 export type CreateUserInput = z.infer<typeof CreateUserSchema>

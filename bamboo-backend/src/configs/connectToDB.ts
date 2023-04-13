@@ -1,6 +1,7 @@
 import { Sequelize } from 'sequelize-typescript';
-import { UserModel } from '../models';
+import { CategoryModel, ParticipationModel, ProjectCategory, ProjectModel, ProjectStatus, RoleModel, TaskModel, TaskPriority, TaskStatus, UserModel } from '../models';
 import { User } from '../models/user-model';
+import { Project } from '../models/project-model';
 
 
 export let sequelize: any;
@@ -26,7 +27,18 @@ if(process.env.NODE_ENV === 'production') {
         password:'',
         host: process.env.DB_HOST,
         port: Number(process.env.DB_PORT),
-        models: [User], // or [Player, Team],
+        models: [
+            User, 
+            ProjectModel, 
+            TaskModel, 
+            CategoryModel,
+            RoleModel,
+            ParticipationModel,
+            TaskPriority,
+            TaskStatus,
+            ProjectStatus,
+            ProjectCategory
+        ], // or [Player, Team],
       });
 }
 
@@ -36,7 +48,7 @@ export const connectToDB = async() => {
 
     try {
         await sequelize.authenticate();
-        await sequelize.sync()
+       // await sequelize.sync({force: true})
         console.log('Database connected successfully')
     } catch (error) {
         console.log('Error connecting to database:', error);

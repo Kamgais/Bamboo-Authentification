@@ -6,7 +6,7 @@ import {
   } from "react-router-dom";
 
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
-import { LoginPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, LoginSuccessPage, PrivateRoute, AppContainer } from '../pages';
+import { LoginPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, LoginSuccessPage, PrivateRoute, AppContainer, Dashboard, ProjectList, Board, Settings } from '../pages';
 
 const AppRouting: FunctionComponent = () => {
 
@@ -39,7 +39,25 @@ const AppRouting: FunctionComponent = () => {
         },
         {
           path: '/app',
-          element: <PrivateRoute><AppContainer/></PrivateRoute>
+          element: <PrivateRoute><AppContainer/></PrivateRoute>,
+          children: [
+            {
+              path: 'dashboard',
+              element: <Dashboard/>
+            },
+            {
+              path: 'projects',
+              element: <ProjectList/>
+            },
+            {
+              path: 'board',
+              element: <Board/>
+            },
+            {
+              path: 'settings',
+              element: <Settings/>
+            }
+          ]
         }
 
       ]);
