@@ -17,7 +17,7 @@ export class AuthController {
   static async createAccountHandler(
     req: Request<{}, {}, CreateUserInput>,
     res: Response<UserDto | ErrorMessage>
-  ): ApiResponseType<UserDto> {
+  ): Promise<Response> {
     const { username, email } = req.body;
 
     try {
@@ -34,8 +34,8 @@ export class AuthController {
       }
 
       // store user to db
-      const userInstance = UserMapper.prototype.toEntity(req.body);
-      const stored = await userInstance.save();
+      const userInstance = await UserMapper.prototype.toEntity(req.body);
+      const stored = await userInstance!.save();
       // generate confirmation token
       const confirmationToken = signJWT({userId: stored.id}, {
         expiresIn: '5m'
@@ -185,7 +185,7 @@ export class AuthController {
       // generate tokens
       const accessToken = signJWT({userId: id}, {expiresIn: '15m'})
       const refreshToken = signJWT({userId: id}, {expiresIn: '1y'})
-      const user = await UserService.findById(String(id));
+      const user = await UserService.findById(id!);
       if(!user) {
         res.status(404).json({message: 'user not found with this id'})
       }

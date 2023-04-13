@@ -22,7 +22,7 @@ export const useLogin = () => {
             setItem('auth-user', data);
             appState.setRequestLoading(false);
             pushToast({content: 'you are in the app', title: 'Success', type: 'success'})
-            navigate('/app')
+            navigate('/app/dashboard')
         },
         onError: (error: any) => {
             appState.setRequestLoading(false);

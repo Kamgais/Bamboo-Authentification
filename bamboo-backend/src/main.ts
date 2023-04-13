@@ -1,12 +1,13 @@
 import express, { Application, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import { connectToDB } from './configs';
-import { authRouter } from './routes';
+import { authRouter, projectRouter, userRouter } from './routes';
 import cors from 'cors';
 import session from 'express-session';
 import passport from "passport";
 import passportConfig from './configs/passport-config';
 import { UserDto } from './interfaces';
+
 
 
 declare module 'express-session' {
@@ -83,3 +84,5 @@ app.get('/', (req,res) => {
 })
 
 app.use('/bamboo/api/v1/auth', authRouter);
+app.use('/bamboo/api/v1/projects', projectRouter);
+app.use('/bamboo/api/v1/users', userRouter);

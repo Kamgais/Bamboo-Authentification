@@ -1,0 +1,28 @@
+@import '../../styles/colors';
+
+.member-item {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid $whiteTheme;
+    background-color: $greyTheme;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:nth-child(2) {
+        position: relative;
+        z-index: 100;
+        left: -10px;
+    }
+    &:nth-child(3) {
+        position: relative;
+        z-index: 150;
+        left: -20px;
+    }
+
+    &:nth-child(4) {
+        position: relative;
+        left: -15px;
+    }
+}

@@ -1,11 +1,27 @@
+@import '../../styles/responsive';
 
 
-.app_button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    height: 60px;
-    border: none;
+
+
+.app_container_content {
+    @include md {
+        margin-left: 100px;
+        width: calc(100vw - 100px);
+    }
+    @include xl {
+        margin-left: 300px;
+        width: calc(100vw - 300px);
+    }
+   
+    margin-top: 90px;
+    min-height: 100vh;
+   // height: 200px !important;
+   
+    
+    display: flex;
+    
+    justify-content: center;
+
+   // background-color: green;
+
 }

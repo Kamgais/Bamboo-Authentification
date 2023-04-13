@@ -5,4 +5,4 @@ export type ErrorMessage = {
     message: string
 }
 
-export type ApiResponseType<T> = Promise<Response<T> | ErrorMessage> 
+export type ApiResponseType<T> = T | ErrorMessage 

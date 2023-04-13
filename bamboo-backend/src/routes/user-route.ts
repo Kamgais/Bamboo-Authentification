@@ -1,7 +1,11 @@
 import { Router } from "express";
+import { UserController } from "../controllers";
 
 const router = Router();
 
 
-//------------------------autheentification routes----------------------------------------
-router.post('/')
+// fetch user by id
+router.get('/:id', UserController.getUserById)
+
+
+export default router;

@@ -5,3 +5,7 @@ export {default as RegisterPage} from './RegisterPage/RegisterPage';
 export {default as LoginSuccessPage} from './LoginSuccess/LoginSucess';
 export {default as PrivateRoute} from './Private/PrivateRoute';
 export {default as AppContainer} from './App/App';
+export {default as Dashboard} from './Dashboard/Dashboard';
+export {default as ProjectList} from './Projects/Projects';
+export {default as Board} from './Board/Board';
+export {default as Settings} from './Settings/Settings';

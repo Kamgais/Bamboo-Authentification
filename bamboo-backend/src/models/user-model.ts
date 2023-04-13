@@ -1,5 +1,7 @@
-import { Table, Column, Model, DataType, AllowNull } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, AllowNull, HasMany } from 'sequelize-typescript';
 import bcrypt from 'bcrypt'
+import { Task } from './task-model';
+import { Project } from './project-model';
 
 
 @Table({
@@ -42,7 +44,8 @@ import bcrypt from 'bcrypt'
     @Column({
         type: DataType.BOOLEAN,
         allowNull: false,
-        defaultValue: false
+        defaultValue: false,
+        field: 'is_account_confirmed'
        
     })
     isAccountConfirmed!:boolean;
@@ -50,15 +53,34 @@ import bcrypt from 'bcrypt'
     @Column({
         type: DataType.INTEGER,
         allowNull: false,
-        defaultValue: -1
+        defaultValue: -1,
+        field: 'google_id'
     })
         googleId!: number;
 
     @Column({
         type: DataType.INTEGER,
         allowNull: false,
-        defaultValue: -1
+        defaultValue: -1,
+        field: 'github_id'
     })
         githubId!: number;
+
+        @Column({
+            type: DataType.STRING(200),
+            allowNull: true,
+            defaultValue: `${process.env.DEFAULT_PROFILE_PIC_URL}`,
+            field: 'profile_pic'
+        })
+        profilePic!: string;
+
+        @HasMany(() => Task, 'createdByUserId')
+        createdTasks!: Task[];
+      
+        @HasMany(() => Task, 'assignedToUserId')
+        assignedTasks!: Task[];  
+
+        @HasMany(() => Project)
+        projects!: Project[]
 
 }
